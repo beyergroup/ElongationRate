@@ -7,4 +7,5 @@ Lifespan analyses using the C. elegans Lifespan Machine were then conducted. In 
 This folder contains the original lifespan data used for **Figure 2b** and **Extended Data Figure 8a**. More precisely, the files contain information about:
 
 a)the survival of wild-type and ama-1(m322) mutant worms conferring a slow Pol-II elongation rate.
+
 b)the number of censored worms for each genotype
