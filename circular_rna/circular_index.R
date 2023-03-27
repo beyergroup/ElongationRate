@@ -1,6 +1,9 @@
+#Loading the required libraries.
+
 library(dplyr)
 library(data.table)
 
+#Here we define the function for the calculation of the circular RNA index.
 retrieveCirc <-  function(spe, min_dec)
 {
     cat(paste(spe, "\n"))
@@ -32,8 +35,6 @@ retrieveCirc <-  function(spe, min_dec)
 
 list=c("celegans","celegans_mut", "dmelanogaster_mut",  "mmusculus", "mmusculus_blood",  "hsapiens", "hsapiens_nascent", "hsapiens_blood")
 
-
-tcirc <- lapply(list, function(spe)retrieveCirc(spe, 4))
 tcirc <- lapply(list, function(spe)retrieveCirc(spe, 0))
 
 day14circ <- wilcox.test(rowMeans(tcirc[[1]][,c(7,11,15)]),rowMeans(tcirc[[1]][,c(5,10,13)]), paired = TRUE, conf.int = TRUE)
