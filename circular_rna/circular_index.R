@@ -49,24 +49,18 @@ hsimr90circ <- wilcox.test(rowMeans(tcirc[[7]][,c(7,8)]),rowMeans(tcirc[[7]][,c(
 hsbloodcirc <- wilcox.test(rowMeans(tcirc[[8]][,c(7,8,11,12,15,16)]),rowMeans(tcirc[[8]][,c(5,6,9,10,13,14)]), paired = TRUE, conf.int = TRUE)
 
 library(RColorBrewer)
-library(RSvgDevice)
 colors <- brewer.pal(4, "Paired")
 cols<-colors[rep(2,11)]
 cols[c(2,4,5)]<-"#F39200"
-devSVG("/cellnet/SyBACol/aging/circular_rna_index.svg", width=5.0472, height=10.4)
-#par(mfrow=c(1,2))
-pdf(paste0("/data/public/apapada1/Figures/figure3bfinal.pdf"))
+                
+pdf(paste0("/data/public/apapada1/Figures/Circular.pdf"))
 ypos <- c(0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4)
 minus <- c(day14circ$conf.int[[1]], day14ama1circ$conf.int[[1]],  day21circ$conf.int[[1]], dmslow10circ$conf.int[[1]], dmslowcirc$conf.int[[1]], dmcirc$conf.int[[1]], mcirc$conf.int[[1]], mbloodcirc$conf.int[[1]], hsimr90circ$conf.int[[1]], hshuvecstotalcirc$conf.int[[1]], hsbloodcirc$conf.int[[1]])
 plus <- c(day14circ$conf.int[[2]], day14ama1circ$conf.int[[2]],  day21circ$conf.int[[2]], dmslow10circ$conf.int[[2]], dmslowcirc$conf.int[[2]], dmcirc$conf.int[[2]], mcirc$conf.int[[2]], mbloodcirc$conf.int[[2]], hsimr90circ$conf.int[[2]], hshuvecstotalcirc$conf.int[[2]], hsbloodcirc$conf.int[[2]])
 avg <- c(day14circ$estimate[[1]], day14ama1circ$estimate[[1]],  day21circ$estimate[[1]], dmslow10circ$estimate[[1]], dmslowcirc$estimate[[1]], dmcirc$estimate[[1]], mcirc$estimate[[1]], mbloodcirc$estimate[[1]], hsimr90circ$estimate[[1]], hshuvecstotalcirc$estimate[[1]], hsbloodcirc$estimate[[1]])
 ypos      <- seq(length(avg))
-
 plot(avg*100, ypos, ylab="", yaxt = 'n',xlim=c(-10,18), pch=19, col= cols,frame.plot=FALSE,lwd = 1.2, cex = 2,cex.axis=1, xlab="Circular RNA index")
 arrows(plus*100, ypos,  minus*100, ypos, length=0.03, angle=90, code=3, lwd = 1.2)
-                                        #axis(side = 2, lwd = 1, labels=FALSE)
-
 abline(v=0, lwd=2, lty=2)
 text(y = ypos, x = avg*100, labels =  c("14 d vs 1 d", "14 d ama1 vs 14 d", "21 d vs 1 d", "10 d RpII215C4 vs 10 d", "50 d RpII215C4 vs 50 d", "50 d vs 10 d", "24 mo vs 3.5 mo","Old vs young ind", "Senescent vs Proliferating",  "Senescent vs Proliferating", "Old vs Young ind"), cex=1.2, pos=4, offset=4)
 dev.off()
-
