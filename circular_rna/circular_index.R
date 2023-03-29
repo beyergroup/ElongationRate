@@ -20,7 +20,6 @@ retrieveCirc <-  function(spe, min_dec)
     tcirc <- lapply(1:length(tgroup), function(x)merge(tgroup[[x]], tSJgroup1[[x]], by.x=c("V1", "V3"), by.y=c("V1", "V2")))
     tcirc <- lapply(1:length(tgroup), function(x)merge(tcirc[[x]], tSJgroup2[[x]], by.x=c("V1", "V2"), by.y=c("V1", "V3")))
     #Match junction to circular RNA 5' &//
-    #tcirc2 <- lapply(1:12, function(x)merge(tgroup[[x]], tSJgroup2[[x]], by.x=c("V1", "V3", "V6"), by.y=c("V1", "V3", "V6")))
     tcirc <- lapply(1:length(tgroup), function(x)tcirc[[x]][tcirc[[x]]$CI >= min_dec,])
     for (x in 1:length(tcirc))
     {
@@ -50,6 +49,7 @@ hsimr90circ <- wilcox.test(rowMeans(tcirc[[7]][,c(7,8)]),rowMeans(tcirc[[7]][,c(
 hsbloodcirc <- wilcox.test(rowMeans(tcirc[[8]][,c(7,8,11,12,15,16)]),rowMeans(tcirc[[8]][,c(5,6,9,10,13,14)]), paired = TRUE, conf.int = TRUE)
 
 library(RColorBrewer)
+library(RSvgDevice)
 colors <- brewer.pal(4, "Paired")
 cols<-colors[rep(2,11)]
 cols[c(2,4,5)]<-"#F39200"
