@@ -1,4 +1,4 @@
-#Rare splicing events
+# Rare splicing events
 
 Accelerated transcription and splicing carries the risk of increasing the frequency of erroneous splicing events, which has been associated with advanced age and shortened lifespan. It is non-trivial to deduce whether a specific splice isoform is the product of erroneous splicing or created in response to a specific signal. Simply checking whether an observed isoform is annotated in some database can be problematic for multiple reasons. For instance, most databases have been created on the basis of data from young animals or embryonic tissue. Thus, a detected isoform that only may be functionally relevant in old animals will not be reported in such databases. Moreover, an annotated isoform might be the result of erroneous splicing if its expression is normally suppressed at a particular age or cellular context. We therefore based our analysis on the notion that extremely rare isoforms (rare with respect to all other isoforms of the same gene in the same sample) are more likely erroneous than frequent isoforms. 
 
