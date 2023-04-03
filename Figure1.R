@@ -2,13 +2,13 @@
 source("/data/public/apapada1/Scripts/Figures/utilities.R")
 library(plyr)
 
-#Check if names are right
+#Check if file names are right
 figure1pre<- function(type){
     load(file=paste0("/data/public/apapada1/Revisions/KallistoNew/",type,"/slope.RData"))
     return(colnames(slope)[6:ncol(slope)])
 }
 
-#Filter for consistent introns
+#Filter for consistent introns, defined as introns in which the speed changes in every replicate.
 extended3<-function(type,nx,ty,to,count=0)
 {
     if(count==0){count<-type}
@@ -29,71 +29,67 @@ extended3<-function(type,nx,ty,to,count=0)
 
 #Calculating slopes by sample
 slopes<-list()
-type="celegans_mut"
+type="celegans_mut" 
 nx=c(1:6)
 ty="wt"
 to="ama1"
-slopes[[1]] <- extended3(type,nx,ty,to)
+slopes[[1]] <- extended3(type,nx,ty,to) #C.elegans 14d ama-1 mutants vs. wt
 names(slopes)[[1]]<-"14_ama"
 
-nx=c(10:15)
+nx=c(10:15) 
 ty="wtday1"
 to="ama1day1"
-slopes[[2]] <- extended3(type,nx,ty,to,"celegans_mut1")
+slopes[[2]] <- extended3(type,nx,ty,to,"celegans_mut1") #C.elegans 1d ama-1 mutants vs. wt
 names(slopes)[[2]]<-"1_ama"
 
 type="hsapiens_nascent"
 nx=1:4
 ty="Young"
 to="Old"
-slopes[[3]] <- extended3(type,nx,ty,to)
+slopes[[3]] <- extended3(type,nx,ty,to) #IMR90 senescent vs. proliferating
 names(slopes)[[3]]<-"IMR90"
 
 type="hsapiens"
 nx=1:6
 ty="young"
 to="old"
-slopes[[4]] <- extended3(type,nx,ty,to)
+slopes[[4]] <- extended3(type,nx,ty,to) #HUVEC senescent vs. proliferating
 names(slopes)[[4]]<-"HUVEC"
 
 type="mmusculus_blood"
 nx=1:6
 ty=6:8
 to=9:11
-slopes[[5]] <- extended3(type,nx,ty,to)
+slopes[[5]] <- extended3(type,nx,ty,to) #Mouse blood, old vs. young
 #slopes[[5]]<-NA
 names(slopes)[[5]]<-"Mouse(blood)"
 
 type="hsapiens_blood"
-
 nx=1:12
 ty="Young"
 to="Old"
-slopes[[6]] <- extended3(type,nx,ty,to)
+slopes[[6]] <- extended3(type,nx,ty,to) #Human blood, old vs. young
 names(slopes)[[6]]<-"Human(blood)"
 
 type="hsapiens_prog"
-
 nx=1:4
 ty="wt"
 to="PROG"
-slopes[[7]] <- extended3(type,nx,ty,to)
+slopes[[7]] <- extended3(type,nx,ty,to) #Human progeria, not included in the paper
 names(slopes)[[7]]<-"Human(Progeria)"
 
 type="mmusculus"
-
 nx=1:6
 ty="young"
 to="old"
-slopes[[8]] <- extended3(type,nx,ty,to)
+slopes[[8]] <- extended3(type,nx,ty,to) #Mouse kidney, old vs. young
 names(slopes)[[8]]<-"Mouse(kidney)"
 
 type="mmusculus_kidney_CR"
-
 nx=1:8
 ty="C2"
 to="CR"
-slopes[[9]] <- extended3(type,nx,ty,to)
+slopes[[9]] <- extended3(type,nx,ty,to) #Mouse kidney, caloric restriction vs. ad libitum
 names(slopes)[[9]]<-"Mouse(kidney, CR)"
 
 type="mmusculus_hypothalamus"
@@ -101,7 +97,7 @@ type="mmusculus_hypothalamus"
 nx=1:7
 ty="wt"
 to="mut"
-slopes[[10]] <- extended3(type,nx,ty,to)
+slopes[[10]] <- extended3(type,nx,ty,to) #Mouse hypothalamus
 names(slopes)[[10]]<-"Mouse(hypothalamus)"
 
 type="rnorvegicus"
@@ -109,77 +105,69 @@ type="rnorvegicus"
 nx=1:6
 ty="Young"
 to="Old"
-slopes[[11]] <- extended3(type,nx,ty,to)
+slopes[[11]] <- extended3(type,nx,ty,to) #Rat, old vs. young
 names(slopes)[[11]]<-"Rat"
 
 type="celegans"
-
 nx=c(1,4,5,8,9,12)
 ty="0Signal"
 to="21Signal"
-slopes[[12]] <- extended3(type,nx,ty,to)
+slopes[[12]] <- extended3(type,nx,ty,to) #C.elegans 21d vs. 1d
 names(slopes)[[12]]<-type
 
 nx=c(1,3,5,7,9,11)
 ty="0Signal"
 to="14Signal"
-slopes[[13]] <- extended3(type,nx,ty,to)
+slopes[[13]] <- extended3(type,nx,ty,to) #C.elegans 14d vs. 1d
 names(slopes)[[13]]<-"celegans_14"
 
 type = "dmelanogaster_merged"
-
 nx=c(1,4,6,7,11,12)
 ty="wt10"
-to="wt50"
-slopes[[14]] <- extended3(type,nx,ty,to)
+to="wt30"
+slopes[[14]] <- extended3(type,nx,ty,to) #Drosophila, 30d vs. 10d
 names(slopes)[[14]]<-type
 
 nx=c(1,2,3,5,11,12)
-ty="wt50"
-to="mut50"
-slopes[[15]] <- extended3(type,nx,ty,to)
+ty="wt30"
+to="mut30"
+slopes[[15]] <- extended3(type,nx,ty,to) #Drosophila, 30d, dilp mutant vs. wt
 names(slopes)[[15]]<-"dmelanogaster_dilp"
 
 type="mmusculus_aldr"
-
 nx=1:6
 ty="AL5"
 to="DR5"
-slopes[[16]] <- extended3(type,nx,ty,to)
+slopes[[16]] <- extended3(type,nx,ty,to) #Mouse 5 months old, dietary restriction vs. ad libitum
 names(slopes)[[16]]<-"ALDR5"
-
 type="mmusculus_aldr"
 
 nx=7:12
 ty="AL16"
 to="DR16"
-slopes[[17]] <- extended3(type,nx,ty,to)
+slopes[[17]] <- extended3(type,nx,ty,to) #Mouse 16 months old, dietary restriction vs. ad libitum
 names(slopes)[[17]]<-"ALDR16"
-
 type="mmusculus_aldr"
 
 nx=13:18
 ty="AL26.5"
 to="DR26.5"
-slopes[[18]] <- extended3(type,nx,ty,to)
+slopes[[18]] <- extended3(type,nx,ty,to) #Mouse 26.5 months old, dietary restriction vs. ad libitum
 names(slopes)[[18]]<-type
 
 type="celegans_mut"
-
 nx=c(1:3,7:9)
 ty="wt"
 to="daf2"
-slopes[[19]] <- extended3(type,nx,ty,to,"celegans_daf2")
+slopes[[19]] <- extended3(type,nx,ty,to,"celegans_daf2") #C.elegans daf2 vs. wt
 names(slopes)[[19]]<-"daf2"
 
 type = "dmelanogaster_merged"
-
 nx=c(4,6:10)
 ty="wt10"
 to="mut10"
-slopes[[20]] <- extended3(type,nx,ty,to)
+slopes[[20]] <- extended3(type,nx,ty,to) #Drosophila, 10d, dilp mutant vs. wt
 names(slopes)[[20]]<-"dmelanogaster_dilp10"
-
 type = "celegans_mut"
 
 nx=c(1:3,10:12)
