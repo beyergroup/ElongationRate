@@ -1,3 +1,5 @@
+#Example script for c.elegans
+
 library(rtracklayer)
 library(IRanges)
 library(parallel)
@@ -15,7 +17,7 @@ chrsize <- c(I=15073434,
              V=30934180,
              X=17718943)
 
-cl <- makeCluster(6, outfile="/data/public/apapada1/test1.log")
+cl <- makeCluster(6, outfile="/data/public/apapada1/cluster.log")
 
 clusterEvalQ(cl, library(IRanges))
 clusterEvalQ(cl, library(XVector))
