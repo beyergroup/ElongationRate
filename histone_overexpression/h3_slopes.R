@@ -5,8 +5,8 @@ ny=c("H3_r1","H3_r2","H4_r1","H4_r2","wt_r1","wt_r2") #sample names
 
 load("gen_diff_slope") #loading slopes
 colnames(area_diff)<-c('chr', 'start', 'end', 'strand', 'ensembl_gene_id',"H3_r1","H3_r2","H4_r1","H4_r2","wt_r1","wt_r2") #adding column names
-filter_reads <- apply(area[,ny], 1, function(x)((sum(x < 0) == length(ny)))) #filtering out positive slopes
-areao <- na.omit(area[filter_reads,])
+filter_reads <- apply(area_diff[,ny], 1, function(x)((sum(x < 0) == length(ny)))) #filtering out positive slopes
+areao <- na.omit(area_diff[filter_reads,])
 ty<-c("wt_r1.y","wt_r2.y") #controls
 ynf <- rowMeans(areao[,ty])
 to<-c("H3_r1.y","H3_r2.y") #H3 overexpression
