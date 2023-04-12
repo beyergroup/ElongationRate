@@ -1,4 +1,4 @@
-# ElongationRate
+# Elongation Rate
 
 Codes used in the paper "Aging-associated changes in transcriptional elongation influence metazoan longevity".
 
