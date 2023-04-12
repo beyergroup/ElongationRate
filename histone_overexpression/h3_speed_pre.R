@@ -1,3 +1,5 @@
+#This script is for filtering the introns used in the slope calculation.
+
 library(plyr)
 library(data.table)
 
