@@ -44,15 +44,7 @@ clusterExport(cl, ls())
 
 cov_data_fwd <- extract_coverage(coverage_fwd, chrsize, cl)
 cov_data_rev <- extract_coverage(coverage_rev, chrsize, cl)
-
-gen_auc <- lapply(names(chrsize)[1:25], run.chr._y_intercept.strand.spe, cov_data_fwd, cov_data_rev, gff_b, chrsize[1:25], direc="all", cl)
-save(gen_auc, file=paste0("/data/public/apapada1/Revisions/h3/intercept"))
-area_diff <- do.call(rbind, gen_auc)
-save(area_diff, file=paste0("/data/public/apapada1/Revisions/h3/intercept"))
 gen_auc <- lapply(names(chrsize)[1:25], run.chr.slope.strand.spe, cov_data_fwd, cov_data_rev, gff_b, repli, chrsize[1:25], "all")
-save(gen_auc, file=paste0("/data/public/apapada1/Revisions/h3/gen_diff_slope"))
-gen_auc<-gen_auc[1:25]
 area_diff <- do.call(rbind, gen_auc)
 save(area_diff, file=paste0("/data/public/apapada1/Revisions/h3/gen_diff_slope"))
-
 stopCluster(cl)
