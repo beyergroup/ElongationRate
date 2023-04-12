@@ -1,3 +1,5 @@
+#This script calculates the slopes of the intronic coverage.
+
 library(IRanges)
 library(parallel)
 library(S4Vectors)
