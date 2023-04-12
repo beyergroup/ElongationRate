@@ -1,3 +1,5 @@
+#This script compares the slopes in the control and overexpression samples and plots out the result.
+
 setwd("/data/public/apapada1/Revisions/h3")
 ny=c("H3_r1","H3_r2","H4_r1","H4_r2","wt_r1","wt_r2") #sample names
 
