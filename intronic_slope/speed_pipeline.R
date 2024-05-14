@@ -43,8 +43,8 @@ colnames(gff_b) <- c('chr','start','end','strand', 'id')
 
 
 clusterExport(cl, ls())
-cov_data_fwd <- extract_coverage(coverage_fwd, chrsize, cl)[1:2]
-cov_data_rev <- extract_coverage(coverage_rev, chrsize, cl)[1:2]
+cov_data_fwd <- extract_coverage(coverage_fwd, chrsize, cl)
+cov_data_rev <- extract_coverage(coverage_rev, chrsize, cl)
 
 
 gen_data<-lapply(names(chrsize),get.cov.strand.spe, cov_data_fwd, cov_data_rev, gff_b, chrsize, "all", cl)
